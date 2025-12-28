@@ -1,0 +1,48 @@
+% Parameters
+
+A = 1.85;
+B = 1.06;
+dt = 1;
+T = 365;
+t = 0:dt:T;
+beta = @(t) A + B * sin((2*pi*t)/365 + pi/2); 
+
+% years = [2021, 2022, 2023, 2024];
+previous_years = [734.2, 655.2, 837.6, 672.7];
+
+average_year = 680;
+
+
+% Plot figure
+
+figure;
+hold on;
+
+colours = [0 0.4470 0.7410;    
+           0.6  0.2    0.8;
+           0.3  0.75   0.4;
+           0.9490 0.5730 0.2080;]; 
+
+plot(t, beta(t), 'k-', 'LineWidth', 3.5)
+
+for i = 1:length(previous_years)
+    beta_new = @(t) (A*previous_years(i)/average_year) + B * sin((2*pi*t)/365 + pi/2); 
+    plot(t, beta_new(t), 'LineWidth', 1.5, "Color", colours(i,:), "LineStyle","-.", 'HandleVisibility','on');
+end
+
+legend('Original $\beta(t)$','2022','2023','2024','2025', 'FontSize', 14, 'Interpreter', 'latex', 'Location', 'southeast');
+xlabel('$t$', 'FontSize', 14, 'Interpreter', 'latex');
+ylabel('$\beta(t)$', 'FontSize', 14, 'Interpreter', 'latex');
+
+xlim ([0 365]); 
+ylim ([0.5 3.5]); 
+
+ax = gca;      
+ax.FontSize = 14; 
+ax.TickLabelInterpreter = 'latex';
+
+titlev = title('Seasonal mean based on previous year data','FontSize',16, 'Interpreter', 'latex');
+titlev.Units = 'normalized';
+titlev.Position = [0.5 1.02 0];
+
+hold off;
