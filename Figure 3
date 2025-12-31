@@ -12,7 +12,7 @@ t = 0:dt:T;
 beta = @(t) A + B * sin((2*pi*t)/365 + pi/2); 
 
 
-% Plot figure
+% Figure 4
 
 R_sigmaconstant = zeros(N_paths, length(t));
 R_sigmanew = zeros(N_paths, length(t));
@@ -32,6 +32,7 @@ end
 figure;
 hold on;
 
+
 N_plot = 3; 
 for i = 1:N_plot
     h1 = plot(t, R_sigmanew(i, :),'LineWidth', 0.6, "Color", [0.4940 0.1840 0.5560]);
@@ -40,18 +41,15 @@ end
 
 h3 = plot(t, beta(t), 'k-', 'LineWidth', 2.5);
 
+
 xlabel('$t$', 'FontSize', 14, 'Interpreter', 'latex');
 ylabel('$R(t)$', 'FontSize', 14, 'Interpreter', 'latex');
-lgd = legend([h1(1) h2(1) h3],'Rain dependent $\sigma$','Constant $\sigma$','Seasonal Mean', 'Interpreter', 'latex','FontSize', 14);
+lgd = legend([h1(1) h2(1) h3],'Rain dependent $\sigma$','Constant $\sigma$','Seasonal Mean', 'Interpreter', 'latex','FontSize', 13);
 xlim ([0 1460]); 
 ylim ([-2 9]); 
 
 ax = gca;      
-ax.FontSize = 14; 
+ax.FontSize = 13; 
 ax.TickLabelInterpreter = 'latex';
-
-titlev = title('Simulated paths for rain dependent $\sigma$ compared to constant $\sigma$','FontSize',16, 'Interpreter', 'latex');
-titlev.Units = 'normalized';
-titlev.Position = [0.5 1.02 0];
 
 hold off;
