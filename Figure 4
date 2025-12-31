@@ -1,4 +1,4 @@
-% Parameters
+%Parameters
 
 A = 1.85;
 B = 1.06;
@@ -11,9 +11,6 @@ beta = @(t) A + B * sin((2*pi*t)/365 + pi/2);
 previous_years = [734.2, 655.2, 837.6, 672.7];
 
 average_year = 680;
-
-
-% Plot figure
 
 figure;
 hold on;
@@ -30,7 +27,7 @@ for i = 1:length(previous_years)
     plot(t, beta_new(t), 'LineWidth', 1.5, "Color", colours(i,:), "LineStyle","-.", 'HandleVisibility','on');
 end
 
-legend('Original $\beta(t)$','2022','2023','2024','2025', 'FontSize', 14, 'Interpreter', 'latex', 'Location', 'southeast');
+legend('Original $\beta(t)$','2022','2023','2024','2025', 'FontSize', 11, 'Interpreter', 'latex', 'Location', 'southeast');
 xlabel('$t$', 'FontSize', 14, 'Interpreter', 'latex');
 ylabel('$\beta(t)$', 'FontSize', 14, 'Interpreter', 'latex');
 
@@ -38,11 +35,7 @@ xlim ([0 365]);
 ylim ([0.5 3.5]); 
 
 ax = gca;      
-ax.FontSize = 14; 
+ax.FontSize = 13; 
 ax.TickLabelInterpreter = 'latex';
-
-titlev = title('Seasonal mean based on previous year data','FontSize',16, 'Interpreter', 'latex');
-titlev.Units = 'normalized';
-titlev.Position = [0.5 1.02 0];
 
 hold off;
